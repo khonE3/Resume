@@ -1,2 +1,2 @@
 # Resume
-Resume gotjitag
+Resume Mr.Thanakrit Thuakthao

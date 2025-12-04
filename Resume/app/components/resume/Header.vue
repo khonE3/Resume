@@ -6,8 +6,18 @@
     <div class="relative z-10 slide-in-top">
       <!-- Terminal style name -->
       <div class="inline-block">
-        <p class="font-mono text-sm mb-2 typing-effect" :class="isDark ? 'text-cyan-400' : 'text-cyan-600'">
-          <span :class="isDark ? 'text-pink-400' : 'text-pink-600'">const</span> developer = <span :class="isDark ? 'text-yellow-400' : 'text-yellow-600'">"</span>
+        <p class="font-mono text-sm mb-2" :class="isDark ? 'text-cyan-400' : 'text-cyan-600'">
+          <span :class="isDark ? 'text-pink-400' : 'text-pink-600'">const</span>&nbsp;
+          <span class="developer-text">
+            <span 
+              v-for="(char, index) in 'developer'" 
+              :key="index" 
+              class="developer-char"
+              :style="{ animationDelay: `${2 + index * 0.1}s` }"
+            >{{ char }}</span>
+          </span>
+          <span class="typing-effect">&nbsp;=&nbsp;</span>
+          <span :class="isDark ? 'text-yellow-400' : 'text-yellow-600'">"</span>
         </p>
         <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent tracking-tight animated-text-gradient">
           THANAKRIT THUAKTHAO
@@ -105,5 +115,63 @@ const { isDark } = useTheme()
   from { width: 0; }
   to { width: 100%; }
 }
-</style>
 
+/* Developer text animation */
+.developer-text {
+  display: inline-block;
+}
+
+.developer-char {
+  display: inline-block;
+  animation: bounceAndDomino 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes bounceAndDomino {
+  /* Initial bounce up */
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  /* Bounce up */
+  5% {
+    transform: translateY(-8px) rotate(0deg);
+  }
+  /* Back down with slight bounce */
+  10% {
+    transform: translateY(0) rotate(0deg);
+  }
+  12% {
+    transform: translateY(-3px) rotate(0deg);
+  }
+  15% {
+    transform: translateY(0) rotate(0deg);
+  }
+  /* Start domino fall */
+  25% {
+    transform: translateY(0) rotate(0deg);
+  }
+  /* Fall forward */
+  35% {
+    transform: translateY(0) rotate(25deg);
+  }
+  /* Stay fallen */
+  50% {
+    transform: translateY(0) rotate(25deg);
+  }
+  /* Rise back up (domino reverse) */
+  65% {
+    transform: translateY(0) rotate(0deg);
+  }
+  /* Small bounce when back up */
+  70% {
+    transform: translateY(-4px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(0) rotate(0deg);
+  }
+  /* Stay normal */
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+</style>

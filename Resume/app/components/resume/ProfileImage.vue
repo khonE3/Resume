@@ -4,7 +4,8 @@
       <!-- Glow effect -->
       <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-lg blur opacity-50 group-hover:opacity-75 transition duration-500"></div>
       
-      <div class="relative w-28 h-36 md:w-32 md:h-40 bg-gray-800 rounded-lg overflow-hidden border-2 border-cyan-500/50">
+      <div class="relative w-28 h-36 md:w-32 md:h-40 rounded-lg overflow-hidden border-2 border-cyan-500/50"
+           :class="isDark ? 'bg-gray-800' : 'bg-gray-200'">
         <img 
           src="/images/นศ.png" 
           alt="Profile Photo" 
@@ -14,6 +15,10 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const { isDark } = useTheme()
+</script>
 
 <style scoped>
 .slide-in-left {

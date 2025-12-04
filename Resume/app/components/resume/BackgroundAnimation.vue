@@ -1,11 +1,12 @@
 <template>
   <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
     <!-- Code brackets background -->
-    <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0" :class="isDark ? 'opacity-5' : 'opacity-10'">
       <span 
         v-for="(bracket, index) in brackets" 
         :key="index"
-        class="absolute text-cyan-400 font-mono select-none"
+        class="absolute font-mono select-none"
+        :class="isDark ? 'text-cyan-400' : 'text-cyan-600'"
         :style="{
           left: bracket.left + '%',
           top: bracket.top + '%',
@@ -29,12 +30,14 @@
         animationDuration: icon.duration + 's'
       }"
     >
-      <span class="opacity-40">{{ icon.emoji }}</span>
+      <span :class="isDark ? 'opacity-40' : 'opacity-60'">{{ icon.emoji }}</span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const { isDark } = useTheme()
+
 const brackets = ref<Array<{left: number, top: number, size: number, rotate: number, opacity: number, char: string}>>([])
 const fallingIcons = ref<Array<{left: number, delay: number, duration: number, emoji: string}>>([])
 
@@ -49,7 +52,7 @@ onMounted(() => {
     size: Math.random() * 4 + 2,
     rotate: Math.random() * 40 - 20,
     opacity: Math.random() * 0.5 + 0.3,
-    char: chars[Math.floor(Math.random() * chars.length)]
+    char: chars[Math.floor(Math.random() * chars.length)] as string
   }))
   
   // Generate falling icons
@@ -57,7 +60,7 @@ onMounted(() => {
     left: Math.random() * 100,
     delay: Math.random() * 10,
     duration: Math.random() * 10 + 15,
-    emoji: techEmojis[Math.floor(Math.random() * techEmojis.length)]
+    emoji: techEmojis[Math.floor(Math.random() * techEmojis.length)] as string
   }))
 })
 </script>

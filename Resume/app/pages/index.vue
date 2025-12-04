@@ -1,5 +1,9 @@
 <template>
-  <div class="min-h-screen bg-gray-950 text-white relative overflow-hidden">
+  <div class="min-h-screen relative overflow-hidden transition-colors duration-300"
+       :class="isDark ? 'bg-gray-950 text-white' : 'bg-gray-50 text-gray-900'">
+    <!-- Theme Toggle Button -->
+    <ResumeThemeToggle />
+    
     <!-- Background Animation -->
     <ResumeBackgroundAnimation />
     
@@ -18,7 +22,8 @@
       </div>
       
       <!-- Footer -->
-      <footer class="text-center py-4 text-gray-600 text-xs font-mono border-t border-gray-800">
+      <footer class="text-center py-4 text-xs font-mono border-t transition-colors duration-300"
+              :class="isDark ? 'text-gray-600 border-gray-800' : 'text-gray-500 border-gray-300'">
         <p>&lt;/&gt; Built with Nuxt + TailwindCSS</p>
       </footer>
     </div>
@@ -26,6 +31,8 @@
 </template>
 
 <script setup lang="ts">
+const { isDark } = useTheme()
+
 useHead({
   title: 'Resume - Thanakrit Thuakthao | Developer',
   meta: [

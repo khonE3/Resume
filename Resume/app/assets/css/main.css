@@ -24,3 +24,30 @@ body {
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
 }
+
+/* Theme Variables */
+:root {
+  --card-bg-dark: rgba(17, 24, 39, 0.6);
+  --card-bg-light: rgba(255, 255, 255, 0.8);
+  --text-primary-dark: #e5e7eb;
+  --text-primary-light: #1f2937;
+  --text-secondary-dark: #9ca3af;
+  --text-secondary-light: #4b5563;
+}
+
+/* Light theme specific styles */
+.light .card-glass {
+  background: var(--card-bg-light) !important;
+  border-color: rgba(209, 213, 219, 0.8) !important;
+}
+
+.light .skill-tag {
+  background: rgba(243, 244, 246, 0.9) !important;
+  color: #374151 !important;
+  border-color: #d1d5db !important;
+}
+
+.light .skill-tag:hover {
+  border-color: #06b6d4 !important;
+  color: #0891b2 !important;
+}
